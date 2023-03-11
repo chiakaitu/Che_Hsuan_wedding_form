@@ -1,0 +1,17 @@
+.page {
+    width: 70%;
+
+}
+
+.canvas {
+    width: 100%;
+    position: relative;
+
+    .title {
+        width: 60%;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}

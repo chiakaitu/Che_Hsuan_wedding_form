@@ -1,0 +1,31 @@
+.info_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    img {
+        height: 5vh;
+        width: auto;
+    }
+
+    .car_content {
+        height: 7.5vh;
+    }
+
+    @media (min-width: 768px) {
+        img {
+            height: 8vh;
+        }
+
+        .car_content {
+            height: 12vh;
+        }
+    }
+
+    @media (max-width: 320px) {
+        .car_content {
+            height: 6vh;
+        }
+    }
+}

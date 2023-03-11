@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "che-hsuan-wedding-form": {
+      "hosting": {
+        "Che_Hsuan_wedding_form": [
+          "che-hsuan-wedding-form"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "che-hsuan-wedding-form"
+  }
+}

@@ -56,7 +56,13 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -97,8 +103,21 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "Che_Hsuan_wedding_form:build:production",
+            "firebaseProject": "che-hsuan-wedding-form",
+            "firebaseHostingSite": "che-hsuan-wedding-form"
+          }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "988336c2-865d-4be5-8697-8b8efbd9908c"
   }
 }
