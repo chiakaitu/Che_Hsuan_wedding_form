@@ -4,7 +4,7 @@ import { AngularFirestore } from "@angular/fire/compat/firestore";
 
 interface SubmitForm {
   name: string,
-  mainCource: string
+  mainCourse: string
 };
 
 @Component({
@@ -17,12 +17,12 @@ export class MealComponent {
   formData = this.store.collection('data').valueChanges() as Observable<SubmitForm[]>;
 
   constructor(private store: AngularFirestore) {}
-  public name = '123123'; // 名字
+  public name = ''; // 名字
   public seafood = ''; // 關於海鮮
-  public mainCource = ''; // 主餐
+  public mainCourse = ''; // 主餐
 
-  public resetMainCource() {
-    this.mainCource = '';
+  public resetMainCourse() {
+    this.mainCourse = '';
   }
 
   public submitForm() {
@@ -32,15 +32,76 @@ export class MealComponent {
       return;
     }
 
+    const showData = this.checkMainCourse(this.mainCourse);
+    let mainCourseCheck = confirm('我的選擇是：' + showData.seafoodShow + '\r\n' + '主餐：' + showData.mainCourseShow);
+
+    if (!mainCourseCheck) {
+      return;
+    }
+
     // 定義要送出的物件
     let req = {
       name: this.name,
-      mainCource: this.mainCource
+      mainCourse: this.mainCourse
     };
 
     this.store.firestore.runTransaction(() => {
       return this.store.collection('data').add(req);
     });
-    alert('感謝你的填寫！');
+    alert('感謝您的填寫！');
+  }
+
+  private checkMainCourse(userInput: string) {
+    const output = {
+      seafoodShow: '',
+      mainCourseShow: ''
+    }
+
+    switch (userInput) {
+      case '1':
+        output.seafoodShow = '海鮮我都吃';
+        output.mainCourseShow = '加拿大野生龍蝦蒸';
+        break;
+    
+      case '2':
+        output.seafoodShow = '海鮮我都吃';
+        output.mainCourseShow = '香料戰斧豬排';
+        break;
+    
+      case '3':
+        output.seafoodShow = '海鮮我都吃';
+        output.mainCourseShow = '鍋煎安格斯牛排';
+        break;
+    
+      case '4':
+        output.seafoodShow = '我不吃生魚片，但熟魚可以';
+        output.mainCourseShow = '加拿大野生龍蝦蒸';
+        break;
+    
+      case '5':
+        output.seafoodShow = '我不吃生魚片，但熟魚可以';
+        output.mainCourseShow = '香料戰斧豬排';
+        break;
+    
+      case '6':
+        output.seafoodShow = '我不吃生魚片，但熟魚可以';
+        output.mainCourseShow = '鍋煎安格斯牛排';
+        break;
+    
+      case '7':
+        output.seafoodShow = '我完全不吃海鮮';
+        output.mainCourseShow = '安格斯炙燒牛排';
+        break;
+  
+      case '8':
+        output.seafoodShow = '我完全不吃海鮮';
+        output.mainCourseShow = '紅麴味增松阪豬';
+        break;
+
+      default:
+        break;
+    }
+
+    return output;
   }
 }
