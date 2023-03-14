@@ -9,9 +9,36 @@
 
     .title {
         width: 60%;
-        position: absolute;
+        position: relative;
         top: 0;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, 55%);
     }
+}
+
+.form_box {
+    width: 90%;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
+.sub_form_box {
+    width: 90%;
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    @media (max-width: 375px) {
+        top: 80%;
+    }
+}
+
+.submit_btn {
+    width: 40%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }

@@ -1,8 +1,69 @@
 <div id="meal" class="page">
-    <div class="canvas dont_overflow">
-        <img src="/assets/images/meal/canvas.png" alt="">
+    <div class="canvas">
         <img class="title" src="/assets/images/meal/title.png" alt="">
-        
+        <img src="/assets/images/meal/canvas.png" alt="">
+        <div class="form_box">
+            <label for="name">我是：</label>
+            <input type="text" id="name" name="name" required size="14">
+            <br>
+            <p>關於海鮮</p>
+            <input [(ngModel)]="seafood" value="all" (change)="resetMainCource()" type="radio" id="all" name="seafood">
+            <label for="all">我什麼都吃</label>
+            <br>
+            <input [(ngModel)]="seafood" value="cooked" (change)="resetMainCource()" type="radio" id="cooked" name="seafood">
+            <label for="cooked">我不吃生魚片，但熟魚可以</label>
+            <br>
+            <input [(ngModel)]="seafood" value="no" (change)="resetMainCource()" type="radio" id="no" name="seafood">
+            <label for="no">我完全不吃海鮮</label>
+            <p>&nbsp;</p>
+        </div>
+        <div class="sub_form_box">
+            <ng-container [ngSwitch]="seafood">
+                <!-- 我什麼都吃 -->
+                <ng-container *ngSwitchCase="'all'">
+                    <hr><br>
+                    <p>主餐我要吃</p>
+                    <input [(ngModel)]="mainCource" value="'1'" type="radio" id="lobster1" name="mainCourse">
+                    <label for="lobster1">加拿大野生龍蝦蒸</label>
+                    <br>
+                    <input [(ngModel)]="mainCource" value="'2'" type="radio" id="pork1" name="mainCourse">
+                    <label for="pork1">香料戰斧豬排</label>
+                    <br>
+                    <input [(ngModel)]="mainCource" value="'3'" type="radio" id="beef1" name="mainCourse">
+                    <label for="beef1">鍋煎安格斯牛排</label>
+                </ng-container>
+
+                <!-- 我不吃生魚片，但熟魚可以 -->
+                <ng-container *ngSwitchCase="'cooked'">
+                    <hr><br>
+                    <p>主餐我要吃</p>
+                    <input [(ngModel)]="mainCource" value="'4'" type="radio" id="lobster2" name="mainCourse">
+                    <label for="lobster2">加拿大野生龍蝦蒸</label>
+                    <br>
+                    <input [(ngModel)]="mainCource" value="'5'" type="radio" id="pork2" name="mainCourse">
+                    <label for="pork2">香料戰斧豬排</label>
+                    <br>
+                    <input [(ngModel)]="mainCource" value="'6'" type="radio" id="beef2" name="mainCourse">
+                    <label for="beef2">鍋煎安格斯牛排</label>
+                </ng-container>
+
+                <!-- 我不吃生魚片，但熟魚可以 -->
+                <ng-container *ngSwitchCase="'no'">
+                    <hr><br>
+                    <p>主餐我要吃</p>
+                    <input [(ngModel)]="mainCource" value="'7'" type="radio" id="beef3" name="mainCourse">
+                    <label for="beef3">安格斯炙燒牛排</label>
+                    <br>
+                    <input [(ngModel)]="mainCource" value="'8'" type="radio" id="pork3" name="mainCourse">
+                    <label for="pork3">紅麴味增松阪豬</label>
+                </ng-container>
+            </ng-container>
+        </div>
+        <ng-container *ngIf="mainCource != ''">
+            <div class="submit_btn" (click)="submitForm()">
+                <img src="/assets/images/meal/submit.png" alt="">
+            </div>
+        </ng-container>
     </div>
     <div class="margin_top_20"></div>
     <div class="margin_top_20"></div>
