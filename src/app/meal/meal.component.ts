@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AngularFirestore } from "@angular/fire/compat/firestore";
+import { Timestamp } from 'firebase/firestore';
 
 interface SubmitForm {
   name: string,
-  mainCourse: string
+  mainCourse: string,
+  timestamp: Timestamp
 };
 
 @Component({
@@ -42,13 +44,26 @@ export class MealComponent {
     // 定義要送出的物件
     let req = {
       name: this.name,
-      mainCourse: this.mainCourse
+      mainCourse: this.mainCourse,
+      timestamp: new Date().toLocaleString()
     };
 
     this.store.firestore.runTransaction(() => {
       return this.store.collection('data').add(req);
     });
     alert('感謝您的填寫！');
+    this.resetInput();
+  }
+
+  private resetInput() {
+    this.name = '';
+    this.seafood = '';
+    this.mainCourse = '';
+    window.scroll({ 
+      top: 0, 
+      left: 0, 
+      behavior: 'smooth' 
+    });
   }
 
   private checkMainCourse(userInput: string) {
